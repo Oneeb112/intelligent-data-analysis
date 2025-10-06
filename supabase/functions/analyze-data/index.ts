@@ -92,13 +92,17 @@ function generateMockERD(): string {
     <rect x="50" y="50" width="300" height="200" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2" rx="8"/>
     <text x="200" y="90" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold">sales_data</text>
     <line x1="50" y1="100" x2="350" y2="100" stroke="#0ea5e9" stroke-width="1"/>
-    <text x="70" y="130" font-family="Arial" font-size="14">• id (PK)</text>
-    <text x="70" y="155" font-family="Arial" font-size="14">• customer_id</text>
-    <text x="70" y="180" font-family="Arial" font-size="14">• product_id</text>
-    <text x="70" y="205" font-family="Arial" font-size="14">• sale_date</text>
-    <text x="70" y="230" font-family="Arial" font-size="14">• total_amount</text>
+    <text x="70" y="130" font-family="Arial" font-size="14">- id (PK)</text>
+    <text x="70" y="155" font-family="Arial" font-size="14">- customer_id</text>
+    <text x="70" y="180" font-family="Arial" font-size="14">- product_id</text>
+    <text x="70" y="205" font-family="Arial" font-size="14">- sale_date</text>
+    <text x="70" y="230" font-family="Arial" font-size="14">- total_amount</text>
   </svg>`;
-  return btoa(svg);
+  
+  // Use proper UTF-8 to base64 encoding
+  const encoder = new TextEncoder();
+  const data = encoder.encode(svg);
+  return btoa(String.fromCharCode(...data));
 }
 
 function generateMockReport(filename: string): string {
